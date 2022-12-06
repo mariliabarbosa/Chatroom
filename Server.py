@@ -3,7 +3,7 @@ import select
 
 HEADER_LENGTH = 10
 
-IP = "127.0.0.1"
+IP = "192.168.100.160"
 PORT = 1234
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -21,7 +21,6 @@ clients = {}
 print(f'Listening for connections on {IP}:{PORT}...')
 
 def receive_message(client_socket):
-
     try:
         message_header = client_socket.recv(HEADER_LENGTH)
 
@@ -68,7 +67,6 @@ while True:
             print(f'Received message from {user["data"].decode("utf-8")}: {message["data"].decode("utf-8")}')
 
             for client_socket in clients:
-
                 if client_socket != notified_socket:
                     client_socket.send(user['header'] + user['data'] + message['header'] + message['data'])
 
